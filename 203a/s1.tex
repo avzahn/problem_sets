@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\subsection*{1.}
+
+This appears to be a Compton scattering problem. Conserving energy before and after the collision, we have
+
+\[E_{in} + Mc^2 = E_{out} + E_e
+\]
+
+\noindent where \(E_{e}\) is the momentum of the charged particle after the collision. 3-momentum is also conserved:
+
+\[E_{in}/c = E_{out}/c + p_{e}
+\]
+
+\noindent The scattered photon is deflected by \(\theta\), so the law of cosines gives
+
+\[p_{e}^2 = E_{out}^2/c^2 + E_{in}^2/c^2 - 2E_{in}E_{out}\cos{\theta}/c^2
+\]
+
+\noindent Additionally, we have the usual energy-momentum relation for the charged particle:
+
+\[p_{e}^2c^2 = E_{e}^2 - M^2c^4\]
+
+\noindent Substituting for \(E_e\) from the energy conservation equation,
+
+\begin{align*}
+p_e^2c^2 &= (E_{in} - E_{out} + Mc^2)^2 - M^2c^4 \\
+&= (E_{in} - E_{out})^2 + 2(E_{in} - E_{out})Mc^2
+\end{align*}
+
+\noindent Substituting for \(p_e^2\):
+
+\begin{align*}
+E_{out}^2 + E_{in}^2 - 2E_{in}E_{out}cos\theta = (E_{in} - E_{out})^2 + 2(E_{in} - E_{out})Mc^2
+\end{align*}
+
+\noindent This simplifies to
+
+\[Mc^2(E_{in}-E_{out}) = E_{in}E_{out}(1-cos\theta)
+\]
+\pagebreak
+
+\subsection*{2.}
+
+\noindent The forces on the oscillator are 
+
+\begin{align*}
+F_B &= e\dot{r}\times B\hat{z}/c \\
+F_\omega  &= -\omega_0^2r
+\end{align*}
+
+\noindent This yields the coupled system
+
+\begin{align*}
+m\ddot{x} + \omega_0^2x - eB\dot{y}/c &= 0 \\
+m\ddot{y} + \omega_0^2y - eB\dot{x}/c &= 0 \\
+m\ddot{z} + \omega_0^2z &= 0
+\end{align*}
+
+\noindent Defining \(\xi = x + iy\) and adding \(i\) times the second equation to the first as the solution does,
+
+\[\ddot{\xi}+\omega_0^2\xi = -i\frac{eB}{mc}\dot{\xi}
+\] 
+\noindent Attempting a solution of the form \( Ae^{i\omega t}\),
+
+\[-\omega^2 + \omega_0^2 = \frac{eB}{mc}\omega
+\]
+
+\noindent whence we recover Landau and Lifshitzs' formula for the oscillation frequency in the \(xy\) plane (the oscillation frequency along the \(z\)-axis is obviously still \(\omega_0\)):
+
+\[\omega = \sqrt{\omega_0^2 +\frac{1}{4}\left(\frac{cB}{mc}\right)^2} \pm \frac{eB}{2mc}
+\]
+
+\subsection*{3}
+
+\noindent We have
+
+\begin{align*}
+\left(\begin{matrix}
+E_\gamma/c \\
+E_\gamma/c \\
+0 \\
+0
+\end{matrix}\right) +
+\left(\begin{matrix}
+Mc \\
+0 \\
+0 \\
+0
+\end{matrix}\right) =
+\left(\begin{matrix}
+E_\gamma' \\
+0 \\
+0 \\
+0
+\end{matrix}\right)
+\end{align*}
+
+\end{document}
