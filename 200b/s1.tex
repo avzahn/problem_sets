@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+
+\newcommand{\tb}{\overline{\theta}}
+\newcommand{\tti}{\tilde{\theta}}
+\newcommand{\dtb}{\dot{\overline{\theta}}}
+\newcommand{\dtti}{\dot{\tilde{\theta}}}
+\newcommand{\ddtb}{\ddot{\overline{\theta}}}
+\newcommand{\ddtti}{\ddot{\tilde{\theta}}}
+
+\newcommand{\pb}{\overline{\varphi}}
+\newcommand{\pti}{\tilde{\varphi}}
+\newcommand{\dpb}{\dot{\overline{\varphi}}}
+\newcommand{\dpti}{\dot{\tilde{\varphi}}}
+\newcommand{\ddpb}{\ddot{\overline{\varphi}}}
+\newcommand{\ddpti}{\ddot{\tilde{\varphi}}}
+
+\newcommand{\coswt}{\cos\omega t}
+\newcommand{\sinwt}{\sin\omega t}
+
+\newcommand{\wn}{\omega_0}
+
+\newcommand{\average}[2]{ \left\langle\ #1 \right\rangle_#2  }
+
+\newcommand{\ueff}{u_{\textit{eff}}}
+
+\subsection*{1a.}
+
+Knowing \(x=l\cos\theta + x_{0}\cos\omega t\) and \(y = l(1-\cos\theta)\), we can compute a Lagrangian that goes over straightforwardly into the equation of motion,
+
+\[\ddot{\theta} = -\frac{g}{l}\sin\theta + \frac{\omega^2x_0}{l}\cos\theta\cos\omega t
+\]
+
+Assume \(\theta\approx\tb+\tti\), where \(\tti\) varies on time scales of \(2\pi/\omega\) and is higher order than \(\tb\), which should vary on timescales closer to the natural period of the undriven system \( 2\pi/\wn\), \( \wn^2=g/l  \). \(\tb\) then carries the average motion of the system, with \(\tti\) being a fast perturbation. We further assume both are periodic.
+
+Note that this is completely different than the more familiar perturbation expansion approach, where we would attempt \(\theta \approx \theta_0 + \theta_1\), where \(\theta_0\) is the solution to the undriven problem and \( \theta _1\) is a first order correction term. \(\tb\) shares nothing in common with \(\theta_0\), and will be seen to follow a very different equation of motion that depends on our results for \(\tti\). The only similarity here is that both \(\tti\) and \(\theta_1\) are lower order than \(\tb\) and \(\theta_0\), respectively.
+
+So substituting \(\tb+\tti\) for \(\theta\) in the equation of motion and expanding to first order in \(\tti\),
+
+\begin{equation} \label{eq:1}
+\ddtb + \ddtti = -\frac{g}{l}\sin\theta  - \frac{g}{l}\tti\cos\tb + \frac{x_0\omega^2}{l}\coswt\cos\tb - \frac{x_0\omega^2}{l}\tti\coswt\sin\tb
+\end{equation}
+
+We can average both sides over a period \(T\) of \( \tti \). Apparently it's invalid to attempt the same average over a period \(T_0\) of \(\tb\), and if anyone reading this has any ideas about why, I would be much obliged to hear them.
+
+\begin{equation}\label{eqn:2}
+\average{\ddtb + \ddtti}{T} = \average{-\frac{g}{l}\sin\theta  - \frac{g}{l}\tti\cos\tb + \frac{x_0\omega^2}{l}\coswt\cos\tb -  \frac{x_0\omega^2}{l}\tti\coswt\sin\tb}{T}
+\end{equation}
+
+All of the fast varying terms that have periods near \(T\) become negligible, or drop out exactly (such as \(\average{\ddtti}{T}\), which has period \(T\) by construction), and the above becomes 
+
+\begin{equation}\label{eqn:3}\average{\ddtb}{T} = \average{-\frac{g}{l}\sin\theta}{T} - \average{\frac{x_0\omega^2}{l}\tti\coswt\sin\tb}{T}
+\end{equation}
+
+Over timescales of \(T\), \(\ddtb\) is effectively constant and we have 
+
+\begin{equation}\label{eqn:4} \ddtb = -\frac{g}{l}\sin\theta - \frac{x_0\omega^2}{l}\sin\tb\average{\tti\coswt}{T}
+\end{equation}
+
+Apparently, we can also construct an equation from equality of the fast terms in \ref{eqn:2}:
+
+\begin{equation}\label{eqn:5}
+\ddtti = -\frac{g}{l}\cos\tb + \frac{\omega^2x_0}{l}\cos\tb\coswt
+\end{equation}
+
+I don't entirely understand this step. First, I would have thought that there is a fast component to the \(\tti\coswt\) term from \ref{eqn:4}, which should have a frequency near \(2\omega\), and that it should contribute to \ref{eqn:5}. Second, I'm not sure exactly why it's valid to equate all the vanishing or nearly vanishing terms like this (maybe there is some sort of linear independence argument?).
+
+Moving on, we assume the first term is negligible since \(g/l \ll \omega^2x_0/l\), and hypothesize a solution for \(\tti\) of the form \(a(\tb)\coswt + b(\tb)\sinwt\). Discarding terms of order \(\dtb\), this yields
+
+\[\tti = -\frac{x_0}{l}\cos\tb \coswt
+\]
+
+Substituting into \ref{eqn:5},
+
+\begin{align*}
+\ddtb = -\frac{g}{l}\sin\theta - \frac{x_0^2\omega^2}{2l^2}\cos\tb\sin\tb
+\end{align*}
+
+Then the effective potential defined by \(\ddtb \equiv -\frac{d}{d\theta}\ueff \) is
+
+\[\ueff = -\frac{g}{l}\cos\tb + \frac{x_0^2 \omega^2}{4l^2}\sin^2 \tb
+\]
+
+It follows that \(\tb = 0\) is a stable equilibrium if \(g/l > \frac{x_0^2\omega^2}{2l}\) and \(\tb=\pi\) is stable if \(\tb=0\) is unstable.
+\\
+
+Unrelated, I don't know how to get \(\average{\ddtti}{T}\) to render correctly.
+
+\subsection*{1b.}
+
+This time \(x = l\cos\theta + r_0\coswt\), \(y = l(1-\cos\theta) + r_0\sinwt \) and we find the Euler-Lagrange equation with some computer assisted algebra:
+
+\begin{align*}\ddot{\theta} &= \frac{r_0\omega^2}{l}\left(  \cos\theta \coswt - \sin\theta \sinwt  \right) - \frac{g}{l}\sin\theta \\
+\end{align*}
+
+Proceeding as above, 
+
+\[\ddtb + \ddtti = \frac{r_0\omega^2}{l}(\sin\tb\sinwt + \tti\cos\tb\sinwt + \cos\tb\coswt ) - \frac{g}{l}(\sin\\tb - \tti\cos\tb)
+\]
+
+Time averaging both sides and taking anything with frequency \(\omega_0\) to be constant,
+
+\[\ddtb = \frac{r_0\omega^2}{l}\left(\cos\tb\average{\tti\sinwt}{T}-\sin\tb\average{\tti\coswt}{T}\right)
+\]
+
+Once again equating the fast terms, we also have
+
+\[\ddtti=\frac{r_0\omega^2}{l}(\sin\tb\sinwt + \cos\tb\coswt) - \frac{g}{l}\tti\cos\tb
+\]
+
+Attempting a solution of the form \( a(\tb)\sinwt + b(\tb)\coswt\) and dropping the \(g/l\) term as before,
+
+\[\tti =  \frac{-r_0}{l}(\sin\tb\sinwt + \cos\tb\coswt)
+\]
+
+Substituting into the \(\ddtb\) equation and dropping averaged terms with frequency \(\omega\) and \(2\omega\),
+
+\[\ddtb = -\frac{g}{l}\sin\tb
+\]
+
+So we recover the simple harmonic oscillator, and we just have the usual stable equilibrium at \(\tb = 0\).
+
+\pagebreak
+
+\subsection*{2.}
+
+We have the equation of motion
+
+\[\ddot{\theta} = \frac{g}{l}\sin\theta + \frac{y_0\omega^2}{l}\sin\theta\coswt
+\]
+
+The idea is try to transform this into the Mathieu  Equation, and then apply the textbook recipe to it for analyzing its parametric instability. The Mathieu Equation is only first order in \(\theta\), so we try expanding the equation of motion to first order in \(\theta\):
+
+\[\ddot{\theta} = \frac{g}{l}\theta + \frac{y_0\omega^2}{l}\theta\coswt
+\]
+
+Then with \(h\equiv \frac{4y_0}{l}\) and \(\omega^2 = (2\omega_0+\epsilon)^2 \approx 4\omega_0^2\),
+
+\[\ddot{\theta} + \omega_0^2(1+h\coswt)\theta = 0
+\]
+
+which is the form we need. The usual recipe for dealing with this thing is to attempt a solution of the form \(\theta = a(t)\coswt + b(t)\sinwt \) where \(\dot{a}\approx\dot{b}\approx0\).
+
+
+
+
+
+\end{document}
