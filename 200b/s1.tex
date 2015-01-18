@@ -143,7 +143,25 @@ Then with \(h\equiv \frac{4y_0}{l}\) and \(\omega^2 = (2\omega_0+\epsilon)^2 \ap
 \[\ddot{\theta} + \omega_0^2(1+h\coswt)\theta = 0
 \]
 
-which is the form we need. The usual recipe for dealing with this thing is to attempt a solution of the form \(\theta = a(t)\coswt + b(t)\sinwt \) where \(\dot{a}\approx\dot{b}\approx0\).
+\newcommand{\coswne}{\cos(\omega_0 + \epsilon/2)}
+\newcommand{\sinwne}{\sin(\omega_0 + \epsilon/2)}
+
+which is the form we need. The usual recipe for dealing with this thing is to attempt a solution of the form \(\theta = a(t)\coswne + b(t)\sinwne \) where \(\ddot{a}\approx\ddot{b}\approx0\). This  yields
+
+\[ \sinwne(-2\omega_0\dot{a} - b\omega_0\epsilon - \omega_0^2hb/2) + \coswne(2\omega_0\dot{b}-a\epsilon\omega_0+\omega_0^2ha/2) = 0
+\]
+
+The second step in the recipe is to propose \(a = a_0e^{st}\), \(b = b_0e^{st}\). Using linear independence of \(\sinwne\) and \(\coswne\),
+
+\begin{align*}
+-2\omega_0\dot{a} - b\omega_0\epsilon - \omega_0^2hb/2 &= 0 \\
+2\omega_0\dot{b}-a\epsilon\omega_0+\omega_0^2ha/2 &= 0 \\
+\end{align*}
+
+Substituting  \(a = a_0e^{st}\), \(b = b_0e^{st}\),
+
+
+
 
 
 
