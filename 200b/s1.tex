@@ -160,11 +160,146 @@ The second step in the recipe is to propose \(a = a_0e^{st}\), \(b = b_0e^{st}\)
 
 Substituting  \(a = a_0e^{st}\), \(b = b_0e^{st}\),
 
+\begin{align*}
+sb_0 &= \left( \frac{\epsilon}{2}-\frac{\wn h}{4} \right)a_0\\
+sa_0 &= -\left( \frac{\epsilon}{2}+\frac{\wn h}{4} \right)b_0
+\end{align*}
 
+Multiplying both equations together, 
 
+\[s = \sqrt{\frac{\wn^2 h^2}{16}-\frac{\epsilon^2}{4}}
+\]
 
+If this is a positive real, we have an instability with growth rate \(s\).
 
+\subsection*{3.}
 
+This time the equation of motion is
+
+\[ \ddot{\phi} + 2\gamma\dot{\phi} + \wn^2\phi(1+h\coswt)=0
+\]
+
+with \(h = 4y_0/l\) as before. Again, we attempt a solution of the form \(a\coswne + b\sinwne\), but this time, since we're only interested in the threshold for instability, we only want the point at which the growth rate is zero and \(a\) and \(b\) are constants. The equation of motion reduces to
+
+\newcommand{\wne}{(\wn+\epsilon /2)}
+
+\begin{align*}
+-a\wne ^2\coswne &-b\wne^2\sinwne -2\gamma a\wne\sinwne \\
+  &+2\gamma b\wne\coswne+a\wn^2\coswne \\
+  &+at\wn^2 h\cos (2\wn + \epsilon)\coswne \\
+  &+ bt\wn^2 h\cos (2\wn + \epsilon)\sinwne + b\wn^2 \sinwne \\
+  &=0
+\end{align*}
+
+Dropping terms of order \(\epsilon^2\) we have after a few cancellations,
+
+\[(-a\wn\epsilon+2\gamma b\wn + a\wn^2h/2)\coswne + (-b\wn\epsilon - 2\gamma a\wn + b\wn^2h/2)\sinwne=0
+\]
+
+Again noting the linear independence of \(\coswne\) and \(\sinwne\),
+
+\begin{align*}
+-a\wn\epsilon+2\gamma b\wn + a\wn^2h/2 &= 0 \\
+-b\wn\epsilon - 2\gamma a\wn + b\wn^2h/2 &= 0 
+\end{align*}
+
+The above holds if \(\epsilon = \sqrt{\frac{\wn^2h^2}{4}-4h^2}\), so we infer that if the mismatch parameter is greater than this value, we have an instability. It's also worth noting that if \(y_0 < \gamma l/\wn\), there cannot exist an instability for any value of \(\epsilon\).
+
+\newpage
+
+\subsection*{4a.}
+
+We are considering the Hamiltonian 
+\[H = \frac{p^2}{2m} + V_0(q) + V(q)\ddot{A}
+\]
+
+where \(p_0\), \(q_0\) have period \(T_0\) and result from \(H_0\), and \(A\) is periodic with period \(T\ll T_0\). Hamilton's equations are then
+
+\begin{align*}
+\dot{p} = -&\frac{\partial H}{\partial q} = -\frac{\partial V_0}{\partial q} -\ddot{A}\frac{\partial V}{\partial q} \\
+\dot{q} = &\frac{\partial H}{\partial p} = \frac{p}{m}
+\end{align*}
+
+So \(\ddot{q} = \dot{p}/m\), which expands to
+
+\[ \ddot{q} = \frac{1}{m}\left( -\frac{\partial V_0}{\partial q} -\ddot{A}\frac{\partial V}{\partial q} \right)
+\]
+
+\newcommand{\ddb}[1]{\ddot{\bar{#1}}}
+\newcommand{\db}[1]{\dot{\bar{#1}}}
+\newcommand{\ddti}[1]{\ddot{\tilde{#1}}}
+\newcommand{\dti}[1]{\dot{\tilde{#1}}}
+
+Dividing \(q\) into a slow component \(\bar{q}\) that varies on timescales \(T_0\) and a fast component \(\tilde{q}\) that varies on timescales \(T\), we substitute \(q = \bar{q}+\tilde{q}\) into the above and expand to first order in \(\tilde{q}\):
+
+\[ m(\ddb{q} + \ddti{q}) =  -\left(\frac{\partial V_0(\bar{q})}{\partial q} + \tilde{q}\frac{\partial^2 V_0(\bar{q})}{\partial q^2}\right) - \ddot{A}\left(\frac{\partial V(\bar{q})}{\partial q} + \tilde{q}\frac{\partial^2 V(\bar{q})}{\partial q^2}\right)
+\]
+
+In these problems, terms are classified as quickly or slowly varying as if this were similar to a parity relation:
+
+\begin{align*}
+fast \times slow &= fast \\
+fast \times fast &= slow \\
+slow \times slow &= slow
+\end{align*}
+
+As mentioned in the first problem, I have issues with this because of the identity
+
+\[ \cos(\omega_1 t)\cos(\omega_2 t) = \frac{1}{2}(\cos(\omega_1 + \omega_2) + \cos(\omega_1 - \omega_2))
+\]
+
+which would seem to contradict the above. Digression aside, we can average over a period \(T\), which should eliminate or render negligible the fast terms that vary on timescales of order \(T\). Noticing that the \(A\) is fast and that \(V(\bar{q})\) and \(V_0(\bar{q})\) are slow,
+
+\[ \average{m\ddb{q}}{T} = \average{-\frac{\partial V_0(\bar{q})}{\partial q} - \ddot{A}\tilde{q}\frac{\partial^2 V(\bar{q})}{\partial q^2} }{T}
+\]
+
+Treating terms that vary over \(T_0\) as constant,
+
+\[m\ddb{q} = -\frac{\partial V_0(\bar{q})}{\partial q} - \frac{\partial^2 V(\bar{q})}{\partial q^2}\average{\ddot{A}\tilde{q}}{T}
+\]
+
+This would be the mean field equation we're looking for if we knew \(\tilde{q}\). Taking for granted equality of the fast terms,
+
+\[m\ddot{\tilde{q}} = - \tilde{q}\frac{\partial^2 V_0(\bar{q})}{\partial q ^2} - \ddot{A}\frac{\partial V(\bar{q})}{\partial q}
+\]
+
+We solve this by arguing that the \( - \tilde{q}\frac{\partial^2 V_0(\bar{q})}{\partial q ^2} \) term is negligible: if \(\wn\) is the angular frequency of \(\bar{q}\), then \(\frac{\partial^2 V_0(\bar{q})}{\partial q ^2} \) is of order \(\wn^2\) while \( \ddti{q} \) is of order \(\omega^2\). Then
+
+\[ m\ddot{\tilde{q}} = - \ddot{A}\frac{\partial V(\bar{q})}{\partial q}
+\]
+
+\(V\) is independent of time by construction, so
+
+\[ \tilde{q} = -\frac{A}{m}\frac{\partial V(\bar{q})}{\partial q}
+\] 
+
+where we have dropped the integration constant, though I don't know why it's valid to do so. Returning to the mean field equation, all that's left to do is compute
+
+\begin{align*}
+\average{\ddot{A}\tilde{q}}{T} &= \frac{-1}{m}\frac{\partial V(\bar{q})}{\partial q}\average{A\ddot{A}}{T} \\
+&= \frac{-1}{m}\frac{\partial V(\bar{q})}{\partial q}\average{ \frac{d}{dt}(A \dot{A}) - \dot{A}^2  }{T}
+\end{align*} 
+
+Recalling that \(H\) is only dependent on \( \ddot{A} \) and not on \(A\) itself, we are free to let \(A\) be zero-mean without loss of generality. Then since \(A\) is \(T\)-periodic we have \( \average{A\dot{A}}{T} = 0\) and the mean field equation finally becomes
+
+\[ m\ddb{q} = -\frac{\partial V_0(\bar{q})}{\partial q} - \frac{1}{m}\frac{\partial V(\bar{q})}{\partial q}\frac{\partial^2 V(\bar{q})}{\partial q^2}\average{\dot{A}^2}{T}
+\]
+
+\subsection*{4b.}
+
+The effective Hamiltonian 
+
+\[K = \frac{p^2}{2m} + V_0 + \frac{1}{4m}\average{\dot{A}^2}{T}\left( \frac{\partial V}{\partial q}\right)^2
+\]
+
+yields
+
+\begin{align*}
+\dot{p} &= -\frac{1}{2m}\average{\dot{A}^2}{T}\frac{\partial V}{\partial q}\frac{\partial^2 V}{\partial q^2}\\
+\dot{q} &= \frac{p}{m}
+\end{align*}
+
+so exactly as before, \(\ddot{q} = \dot{p}/m\) and we recover the mean field equation from above right away.
 
 
 \end{document}
