@@ -2,8 +2,13 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\author{Alex Zahn}
+\title{Phys 200b Problem Set I}
+\date{}
+
 \begin{document}
 
+\maketitle
 
 \newcommand{\tb}{\overline{\theta}}
 \newcommand{\tti}{\tilde{\theta}}
@@ -300,6 +305,83 @@ yields
 \end{align*}
 
 so exactly as before, \(\ddot{q} = \dot{p}/m\) and we recover the mean field equation from above right away.
+
+\subsection*{5a.}
+
+We start with the general statement in an intertial frame for the net external torque on rigid body
+
+\[N^{\textit{ext}} = \left(\frac{dL}{dt}\right)_\textit{intertial}
+\]
+
+Transforming in the usual way to body fixed coordinates,
+
+\[ N^{\textit{ext}} = \left( \frac{dL}{dt}\right)_\textit{body} + \omega \times L
+\]
+
+Since \(I\omega = L\) this is just
+
+
+\[N^{\textit{ext}} = I\dot{\omega} + \omega \times I\omega
+\]
+
+The moment of intertia tensor should be diagonal in this frame so that expands to the Euler equations:
+
+\begin{align*}
+I_1\dot{\omega_1} &= (I_2-I_3)\omega_2 \omega_3 + N^{\textit{ext}}_1 \\
+I_2\dot{\omega_2} &= (I_3-I_1)\omega_3 \omega_1 + N^{\textit{ext}}_2 \\
+I_3\dot{\omega_3} &= (I_1-I_2)\omega_1 \omega_2 + N^{\textit{ext}}_3
+\end{align*}
+
+\subsection*{5b.}
+
+First consider the case where \(\omega_2 = \omega_0 + \epsilon_2\), \(\omega_1 = \epsilon_1\), and \(\omega_3 = \epsilon_3\). There are no external torques, so the Euler equations become
+
+\begin{align*}
+I_1\dot{\epsilon_1} &= (I_2-I_3)(\omega_0+\epsilon_2) \epsilon_3 \\
+I_2\dot{\epsilon_2} &= (I_3-I_1)\epsilon_3 \epsilon_1 \\
+I_3\dot{\epsilon_3} &= (I_1-I_2)\epsilon_1 (\omega_0 + \epsilon_2) 
+\end{align*}
+
+Going to first order in \(\epsilon_i\),
+
+\begin{align*}
+I_1\dot{\epsilon_1} &= (I_2-I_3)\omega_0 \epsilon_3 \\
+I_2\dot{\epsilon_2} &= 0 \\
+I_3\dot{\epsilon_3} &= (I_1-I_2)\omega_0 \epsilon_1
+\end{align*}
+
+Differentiating the last line,
+
+\[ I_3 \ddot{\epsilon_3} = (I_1-I_2)\omega_0 \dot{\epsilon_1}
+\]
+
+We already have an expression for \(\epsilon_1\) with the first Euler equation, so substituting yields
+
+\[ \ddot{\epsilon_3} = \frac{1}{I_1I_3}(I_1-I_2)(I_2-I_3)\wn^2 \epsilon_3
+\]
+
+The solution is \( \epsilon_3 = e^{st} \) where
+
+\[ s = \wn \sqrt{\frac{(I_1-I_2)(I_2-I_3)}{I_1I_3}} \equiv \wn\sqrt{\alpha}
+\]
+
+Instability results if \(\alpha\) is positive, which we can determine from knowing that \(I_1<I_2<I_3\). Here \(\alpha\) is clearly positive, so we've shown that we have an instability.
+
+The other two cases follow from cyclic permutation of the above. We have
+
+\begin{align*}
+\alpha_{\epsilon_1} &= \frac{(I_2-I_3)(I_3-I_1)}{I_2I_1} < 0\\
+\alpha_{\epsilon_2} &= \frac{(I_3-I_1)(I_1-I_2)}{I_3I_2} < 0
+\end{align*}
+
+So those cases are stable.
+
+\subsection*{5c.}
+
+The immediately obvious conserved quantities are the magnitude of the angular momentum and the energy.
+
+
+
 
 
 \end{document}
