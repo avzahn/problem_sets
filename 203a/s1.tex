@@ -1,7 +1,14 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
 
+\author{Alex Zahn}
+\title{Phys 203a Problem Set I}
+\date{}
+
+
 \begin{document}
+
+\maketitle
 
 \subsection*{1.}
 
@@ -41,7 +48,7 @@ E_{out}^2 + E_{in}^2 - 2E_{in}E_{out}cos\theta = (E_{in} - E_{out})^2 + 2(E_{in}
 
 \[Mc^2(E_{in}-E_{out}) = E_{in}E_{out}(1-cos\theta)
 \]
-\pagebreak
+
 
 \subsection*{2.}
 
@@ -74,9 +81,14 @@ m\ddot{z} + \omega_0^2z &= 0
 \[\omega = \sqrt{\omega_0^2 +\frac{1}{4}\left(\frac{cB}{mc}\right)^2} \pm \frac{eB}{2mc}
 \]
 
+\pagebreak
+
+
 \subsection*{3}
 
-\noindent We have
+\noindent The idea is to transform to the center of momentum frame. This will be where the collision is least energetic, and the total energy in this frame is the minimum necessary. \\
+
+In the lab frame we have
 
 \begin{align*}
 \left(\begin{matrix}
@@ -92,11 +104,111 @@ Mc \\
 0
 \end{matrix}\right) =
 \left(\begin{matrix}
-E_\gamma' \\
+E_\gamma'/c \\
+p_{\gamma x}' \\
+p_{\gamma y}' \\
+p_{\gamma z}'
+\end{matrix}\right) +
+\left(\begin{matrix}
+E_M'/c\\
+p_{Mx} \\
+p_{My} \\
+p_{Mz}
+\end{matrix}\right) +
+\left(\begin{matrix}
+E_+/c \\
+p_{+x} \\
+p_{+y} \\
+p_{+z}
+\end{matrix}\right) +
+\left(\begin{matrix}
+E_-/c \\
+p_{-x} \\
+p_{-y} \\
+p_{-z}
+\end{matrix}\right)
+\end{align*}
+
+where the \(\pm\) refer to the particle and antiparticle respectively. Symmetry requires \(p_+ = -p_-\) and \(E_+ = E_-\) so that the above becomes
+\begin{align*}
+\left(\begin{matrix}
+(E_\gamma+Mc^2)/c \\
+E_\gamma/c \\
 0 \\
+0
+\end{matrix}\right)&=
+\left(\begin{matrix}
+(E_\gamma'+E_M' +2E_+)/c \\
+p_{\gamma x}'+p_{Mx}' \\
+0 \\
+0
+\end{matrix}\right)
+\equiv \left(\begin{matrix}
+E'/c \\
+p' \\
 0 \\
 0
 \end{matrix}\right)
 \end{align*}
+
+The invariant interval of the total reactant 4-momentum in the lab frame is \(2E_\gamma M + M^2 c^2\). 4-momentum is conserved, so that the total product 4-momentum in the CM frame must also have this same invariant. The 3-momentum in the CM frame is zero, so if \(E^*\) is the CM frame energy we must have
+
+\[E_\gamma M + M^2 c^2 = {E^*}^2/c^2
+\] 
+
+If not for the product photon we could find \(E^*\) right away by noting that in the CM frame, the only contribution to the total energy would be from mass energy of the product particles.
+
+
+
+
+We transform from the lab frame to the CM frame by operating with the \(+x\) lorentz boost:
+
+\begin{align*}
+\left(\begin{matrix}
+\gamma & -\beta\gamma &0&0\\
+-\beta\gamma &\gamma &0&0 \\
+0&0&1&0 \\
+0&0&0&1
+\end{matrix}\right)
+\end{align*}
+
+This yields \\
+\begin{align*}
+\left(
+\begin{array}{c}
+ \gamma  \left(c^2 M-(\beta -1) E_{\gamma }\right) \\
+ \gamma  \left(\beta  c^2 (-M)-(\beta -1) E_{\gamma }\right)
+   \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)=
+\left(
+\begin{array}{c}
+ \gamma  \left(E_{\gamma }'-\beta  c
+   \left(p_{\text{Mx}}'+p_{\text{$\gamma $x}}'\right)+2
+   E_++E_M'\right) \\
+ c \gamma  \left(-\frac{\beta  \left(E_{\gamma }'+2
+   E_++E_M'\right)}{c}+p_{\text{Mx}}'+p_{\text{$\gamma
+   $x}}'\right) \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)
+\end{align*}
+
+\[\left(
+\begin{array}{c}
+ \gamma  \left(c^2 M-(\beta -1)
+   E_{\gamma }\right) \\
+ \gamma  \left(\beta  c^2
+   (-M)-(\beta -1) E_{\gamma
+   }\right) \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)
+\]
+
 
 \end{document}
