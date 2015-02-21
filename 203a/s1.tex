@@ -156,59 +156,83 @@ The invariant interval of the total reactant 4-momentum in the lab frame is \(2E
 \[E_\gamma M + M^2 c^2 = {E^*}^2/c^2
 \] 
 
-If not for the product photon we could find \(E^*\) right away by noting that in the CM frame, the only contribution to the total energy would be from mass energy of the product particles.
+If not for the product photon we could find \(E^*\) right away by noting that in the CM frame, the only contribution to the total energy would be from mass energy of the product particles. Instead, the above becomes the underconstrained
+
+\[E_\gamma M + M^2 c^2 = {(E_\gamma^{'*} + \sqrt{3M}c)}^2/c^2
+\] 
+
+So this is as far as we can take the problem unless we specify something else about it, such as the angle between the reactant and product photons.
 
 
 
 
-We transform from the lab frame to the CM frame by operating with the \(+x\) lorentz boost:
+%We transform from the lab frame to the CM frame by operating with the \(+x\) lorentz boost:
+%
+%\begin{align*}
+%\left(\begin{matrix}
+%\gamma & -\beta\gamma &0&0\\
+%-\beta\gamma &\gamma &0&0 \\
+%0&0&1&0 \\
+%0&0&0&1
+%\end{matrix}\right)
+%\end{align*}
+%
+%This yields \\
+%\begin{align*}
+%\left(
+%\begin{array}{c}
+% \gamma  \left(c^2 M-(\beta -1) E_{\gamma }\right) \\
+% \gamma  \left(\beta  c^2 (-M)-(\beta -1) E_{\gamma }\right)
+%   \\
+% 0 \\
+% 0 \\
+%\end{array}
+%\right)=
+%\left(
+%\begin{array}{c}
+% \gamma  \left(E_{\gamma }'-\beta  c
+%   \left(p_{\text{Mx}}'+p_{\text{$\gamma $x}}'\right)+2
+%   E_++E_M'\right) \\
+% c \gamma  \left(-\frac{\beta  \left(E_{\gamma }'+2
+%   E_++E_M'\right)}{c}+p_{\text{Mx}}'+p_{\text{$\gamma
+%   $x}}'\right) \\
+% 0 \\
+% 0 \\
+%\end{array}
+%\right)
+%\end{align*}
+%
+%\[\left(
+%\begin{array}{c}
+% \gamma  \left(c^2 M-(\beta -1)
+%   E_{\gamma }\right) \\
+% \gamma  \left(\beta  c^2
+%   (-M)-(\beta -1) E_{\gamma
+%   }\right) \\
+% 0 \\
+% 0 \\
+%\end{array}
+%\right)
+%\]
+
+\subsubsection*{4}
+
+This problem has been solved in lecture twice now by the method of eigenfunction expansion, so instead I'll attempt this using symmetry and the divergence theorem in n dimensions.
+
+Applying the divergence theorem to \(\nabla\phi\),
 
 \begin{align*}
-\left(\begin{matrix}
-\gamma & -\beta\gamma &0&0\\
--\beta\gamma &\gamma &0&0 \\
-0&0&1&0 \\
-0&0&0&1
-\end{matrix}\right)
+\oint\limits_{\partial V} (\nabla\phi \cdot \hat{n}) \mathrm{d (\partial V)} &= \int\limits_{V} (\nabla \cdot \nabla\phi)\mathrm{dV}\\
+&= \int\limits_{V} \nabla^2\phi\mathrm{dV}\\
+&= \int\limits_{V} K_4 \delta(0)\mathrm{dV}\\
+&= K_4
 \end{align*}
 
-This yields \\
-\begin{align*}
-\left(
-\begin{array}{c}
- \gamma  \left(c^2 M-(\beta -1) E_{\gamma }\right) \\
- \gamma  \left(\beta  c^2 (-M)-(\beta -1) E_{\gamma }\right)
-   \\
- 0 \\
- 0 \\
-\end{array}
-\right)=
-\left(
-\begin{array}{c}
- \gamma  \left(E_{\gamma }'-\beta  c
-   \left(p_{\text{Mx}}'+p_{\text{$\gamma $x}}'\right)+2
-   E_++E_M'\right) \\
- c \gamma  \left(-\frac{\beta  \left(E_{\gamma }'+2
-   E_++E_M'\right)}{c}+p_{\text{Mx}}'+p_{\text{$\gamma
-   $x}}'\right) \\
- 0 \\
- 0 \\
-\end{array}
-\right)
-\end{align*}
+From here, the only assumption we need is that \(\nabla\phi\) is spherically symmetric. Then let V be the 4-sphere of radius r; the surface integral becomes
 
-\[\left(
-\begin{array}{c}
- \gamma  \left(c^2 M-(\beta -1)
-   E_{\gamma }\right) \\
- \gamma  \left(\beta  c^2
-   (-M)-(\beta -1) E_{\gamma
-   }\right) \\
- 0 \\
- 0 \\
-\end{array}
-\right)
+\[S(r)\nabla\phi(r) = K_4
 \]
 
+where S is the surface volume of the 4-sphere. We can find S by first considering the interior hyper volume of the 4-ball of radius r and then differentiating with respect to r.
 
 \end{document}
