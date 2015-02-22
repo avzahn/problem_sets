@@ -224,15 +224,64 @@ Applying the divergence theorem to \(\nabla\phi\),
 \begin{align*}
 \oint\limits_{\partial V} (\nabla\phi \cdot \hat{n}) \mathrm{d (\partial V)} &= \int\limits_{V} (\nabla \cdot \nabla\phi)\mathrm{dV}\\
 &= \int\limits_{V} \nabla^2\phi\mathrm{dV}\\
-&= \int\limits_{V} K_4 \delta(0)\mathrm{dV}\\
-&= K_4
+&= \int\limits_{V} K_4 Q \delta(0)\mathrm{dV}\\
+&= K_4Q
 \end{align*}
 
-From here, the only assumption we need is that \(\nabla\phi\) is spherically symmetric. Then let V be the 4-sphere of radius r; the surface integral becomes
+From here, the only assumption we need is that \(\nabla\phi\) is spherically symmetric. Then let V be the 4-sphere of radius r; the integral over \(\partial V\) becomes
 
-\[S(r)\nabla\phi(r) = K_4
+\[S(r)|\nabla\phi(r)| = K_4 Q
 \]
 
-where S is the surface volume of the 4-sphere. We can find S by first considering the interior hyper volume of the 4-ball of radius r and then differentiating with respect to r.
+where \(S(r)\) is the surface volume of the 4-sphere of radius \(r\). We can find \(S(r)\) by first considering the interior hyper volume of the 4-ball of radius \(r\) and then differentiating with respect to \(r\).
+
+The basic approach is to generalize spherical coordinates to four dimensions. Proceeding by analogy with spherical  coordinates, let \(r^2 = w^2 + z^2 + y^2 + x^2\), and let \( \theta_w \in [0,\pi]\) be the angle to the \(w\) axis. Then \(w = r \cos \theta_w \), and the definition of \(r\) becomes
+
+\begin{align*}
+ r^2\cos^2\theta_w + z^2 + y^2 + x^2 &= r^2 \\
+ \implies z^2 + y^2 + x^2 &= r^2(1-\cos^2\theta_w) \\
+ &= r^2\sin^2\theta_w
+\end{align*} 
+
+If we take \(z = r\sin\theta_w\cos\theta_z\), \(\theta_z \in [0,\pi]\), notice that by substituting into the above we have
+
+\begin{align*}
+y^2 + x^2  &= r^2\sin^2\theta_w(1-\cos^2\theta_z) \\
+&= r^2\sin^2\theta_w\sin^2\theta_z
+\end{align*}
+
+Repeating for \(y = r\sin\theta_w\sin\theta_z\cos\theta_y \) then yields \(x^2 = r^2\sin^2\theta_w\sin^2\theta_z\sin^2\theta_y\). If \(\theta_y \in [0,\pi]\) then \(x = \pm r\sin\theta_w\sin\theta_z\sin\theta_y \). We can get rid of the \(\pm\) though by just choosing instead that \(\theta_y \in [0,2\pi]\).
+
+In order to compute the volume integral, we require the Jacobian determinant J:
+
+\begin{align*}
+	\left|\begin{matrix}
+	\frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta_w} & \frac{\partial x}{\partial \theta_z} &\frac{\partial x}{\partial \theta_y} \\[6pt]
+	\frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta_w} & \frac{\partial y}{\partial \theta_z} &\frac{\partial y}{\partial \theta_y} \\[6pt]
+	\frac{\partial z}{\partial r} & \frac{\partial z}{\partial \theta_w} & \frac{\partial z}{\partial \theta_z} &\frac{\partial z}{\partial \theta_y} \\[6pt]
+	\frac{\partial w}{\partial r} & \frac{\partial w}{\partial \theta_w} & \frac{\partial w}{\partial \theta_z} &\frac{\partial w}{\partial \theta_y} \\
+	\end{matrix}\right|
+\end{align*}
+
+which is straightforward to compute (especially with software assistance...)
+
+\[J=r^3\sin^2\theta_w\sin\theta_z
+\]
+
+The volume of the 4-ball is then
+\begin{align*}
+V(r) &= \int\limits_{0}^{r}\int\limits_{0}^{2\pi}\int\limits_{0}^{\pi}\int\limits_{0}^{\pi}J\ d\theta_w d\theta_z d\theta_y dr = \frac{1}{2}\pi^2r^4
+\end{align*}
+
+So \(S(r) = 2\pi^2r^3 \). Since \(K_4\) is a space independent constant we require \(|\nabla \phi(r)| \propto r^{-3}\). Using again that \(\phi\) is spherically symmetric, we can write
+
+\begin{align*} 
+\nabla\phi &= \left(\begin{matrix}
+1 \\ 1\\ 1 \\ 1\\
+\end{matrix}\right)\phi ' (r) \\[6pt]
+|\nabla\phi| &= \phi ' (r)
+\end{align*} 
+
+leaving us with \(\phi \propto r^{-2}\). If we want \(\phi = Q/r^2 \) then \(|\nabla \phi| = 2Q/r^3\) and \(K_4 = 4\pi^2\). 
 
 \end{document}
