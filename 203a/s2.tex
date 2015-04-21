@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{bbold}
+\usepackage{mathrsfs}
+
+\author{Alex Zahn}
+\title{Phys 203a Problem Set II}
+\date{}
+
+\begin{document}
+\maketitle
+\subsection*{1}
+
+The \(i^{th}\) Euler-Lagrange equation for this \(L\) (correcting for the missing factor of \(Q\) in the \(A\) term) is
+
+\begin{align*}
+0 &= -Q \frac{\partial \phi}{\partial x_i} + \frac{Q}{c}\sum_j\frac{\partial A_j}{\partial x_i}\dot{x}_j - \frac{d}{dt}\left( M\dot{x}_i  + \frac{Q}{c} A_i\right)\\
+&= -Q \frac{\partial \phi}{\partial x_i} + \frac{Q}{c}\sum_j\frac{\partial A_j}{\partial x_i}\dot{x}_j - M\ddot{x}_i  - \frac{Q}{c} \sum_j \frac{\partial A_i}{\partial x_j}\dot{x_j} - \frac{Q}{c}\dot{A}_i\\
+&= -M\ddot{x}_i + QE_i + \frac{Q}{c}\sum_j \left( \frac{\partial A_j}{\partial x_i}\dot{x}_j-\frac{\partial A_i}{\partial x_j}\dot{x}_i\right) \\
+&= -M\ddot{x}_i + QE_i + \frac{Q}{c} (\dot{x} \times (\nabla \times A))_i \\
+\end{align*}
+
+which yields
+
+\[ M\ddot{x} = QE + \frac{Q}{c}\dot{x} \times B
+\]
+
+\subsection*{2}
+
+If the charge density \(\rho_q\) is given, we can find \(J\) by imposing local conservation of charge:
+
+\[\frac{\partial \rho_q}{\partial t} + \nabla \cdot J = 0
+\]
+
+It's easy to see by direct substitution into the above that if 
+
+\[\rho_q = Q\delta^3(x_0 - x)\]
+
+we can satisfy this condition with
+
+\[J = Q\dot{x}\delta^3(x_0-x)
+\]
+
+Now consider the nonrelativistic lagrangian for a point charge,
+
+\[ L = \frac{1}{2}m\dot{x}^2 + Q(\frac{1}{c}\dot{x}\cdot A -\phi)
+\]
+
+Intuition strongly suggests we can generalize to an arbitrary charge distribution by associating \(\dot{x}\) with the current density \(J\), \(Q\) with the charge density \(\rho_q\), and \(m\) with the mass density \(\rho_m\). Invoking the ancient rite of dimensional analysis, we propose a lagrangian density
+
+\begin{align*}
+\mathscr{L} &= \frac{1}{2}\frac{\rho_m}{\rho_q^2}J^2  +\frac{1}{c}J\cdot A - \rho_q \phi\\
+L &= \int \mathrm{d}^3x \mathscr{L} \\
+\end{align*}
+
+where \(\rho_m\) is the mass density, which for a point particle would be
+\[ \rho_m = m\delta^3(x_0 - x)
+\]
+
+Inserting the expressions for \(\rho_q\), \(\rho_m\), and \(J\) belonging to a point charge, we recover the original point charge lagrangian. The resulting lorentz force law is
+\[ \frac{\rho_m}{\rho_q}\dot{J} = \rho_qE + J \times B/c
+\]
+
+\subsection*{3}
+
+It's easy to see that if we take \(E=0\), the only acceleration on the mass is orthogonal to its velocity due to the \(\dot{x}\times B\) term, so that energy is conserved if electric field vanishes.
+
+\subsection*{4}
+
+Without loss of generality, we can take the constant \(B\) field to be along the \(\hat{z}\) axis. The equation of motion becomes
+
+\begin{align*}
+\begin{cases}
+m\ddot{x}_1 = QE_1 + QB_0\dot{x}_2/c \\
+m\ddot{x}_2 = QE_2 - QB_0\dot{x}_1/c \\
+m\ddot{x}_3 = QE_3
+\end{cases}
+\end{align*}
+
+The solution for \(x_3\) given \(x(0)=\dot{x}(0) =0\) is seen by inspection:
+
+\[x_3 = \frac{1}{2}QE_3t^2
+\]
+
+The rest of the solution is less trivial:
+
+\begin{align*}
+x_1 &= E_2t/B_0 + \frac{mc^2}{B_0^2Q} \left( E_1  - E_2\sin\frac{B_0Qt}{mc} - E_1\cos\frac{B_0Qt}{mc}\right)\\
+x_2 &= E_1t/B_0 + \frac{mc^2}{B_0^2Q} \left( E_2  - E_2\cos\frac{B_0Qt}{mc} + E_1\sin\frac{B_0Qt}{mc}\right)\\
+\end{align*}
+
+\subsection*{5}
+
+The equation of motion is now
+
+\begin{align*}
+\begin{cases}
+m\ddot{x}_1 = 0 \\
+m\ddot{x}_2 =  QB_0\cos(\frac{\omega t}{c}-kx_3)\dot{x}_3/c \\
+m\ddot{x}_3 =  -QB_0\cos(\frac{\omega t}{c}-kx_3)\dot{x}_2/c
+\end{cases}
+\end{align*}
+
+If the particle starts from rest, we can see that there won't be any acceleration to move it from its initial position. This is lucky, because this system looks more than a little difficult to solve in general.
+
+
+\subsection*{6}
+
+See Problem Set 3 for a complete derivation of the generators of rotation for \(\mathbb{R}^3\). In general though, for any given space \(S\), the generator of rotation about an arbitrary \(\hat{n}\) is \(J \cdot \hat{n}\), where \(J = (J_1,J_2,J_3)\)  with \(J_i:S \rightarrow S\) and \([J_i,J_j]=i\epsilon_{ijk}J_k\) 
+
+\end{document}

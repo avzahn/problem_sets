@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{bbold}
+\usepackage{mathrsfs}
+
+\author{Alex Zahn}
+\title{Phys 203a Problem Set IV}
+\date{}
+
+\begin{document}
+\maketitle
+\subsection*{1}
+
+\subsubsection*{Satisfying the Lorenz Gauge}
+
+Let \(t_r\) be the retarded time \(t-\frac{|x-y|}{c}\). The potentials are then
+
+\begin{align*}
+\phi(x,t) &= \int\mathrm{d}^3y\frac{\rho(y,t_r)}{|x-y|} \\[6pt]
+A(x,t) &= \frac{1}{c}\int\mathrm{d}^3y\frac{J(y,t_r)}{|x-y|} 
+\end{align*}
+
+The trick to this problem is in finding the divergence of A. To avoid confusion, let's do this in the most verbose way possible:
+
+\begin{align*}
+\nabla_x \cdot \frac{J(y,t_r)}{|x-y|} &= \sum \frac{\partial}{\partial x_i}\left( \frac{J_i(y,t_r)}{\sqrt{(x_1-y_1)^2+(x_2-y_2)^2+(x_3-y_3)^2}}  \right) \\[12pt]
+%
+%
+%
+&= \sum 
+\frac{\partial}{\partial x_i}\left( \frac{J_i(y,t - \frac{1}{c} \sqrt{(x_1-y_1)^2+(x_2-y_2)^2+(x_3-y_3)^2} )}{\sqrt{(x_1-y_1)^2+(x_2-y_2)^2+(x_3-y_3)^2}}  \right) \\[12pt]
+%
+%
+%
+&= \sum\left(
+	-\frac{
+		(x_i-y_i)\left.\frac{\partial J (y,t')}{\partial t'}\right|_{t'=t_r}
+			}{c \left(\left(x_1-y_1\right){}^2+\left(x_2-y_2\right){}^2+\left(x_3-y_3\right){}^2\right)}   \right. \\[12pt]
+%
+&\left. -  \frac{(x_i-y_i)\left.\frac{\partial J (y,t')}{\partial t'}\right|_{t'=t_r}}{\left(\left(x_1-y_1\right){}^2+\left(x_2-y_2\right){}^2+\left(x_3-y_3\right){}^2\right){}^{3/2}}  \right)
+\end{align*}
+
+This last form is recognizable as \(\frac{\nabla \cdot J(y,t_r)}{|x-y|}\), which is verified by the same laborious procedure above. We can then invoke the continuity condition
+
+\[ \dot{\phi} = -\nabla \cdot A
+\]
+ 
+and see quickly that 
+\[ \dot{\phi}/c + \nabla \cdot A = 0
+\]
+
+\subsubsection*{Fourier transforms of \(A\) and \(\phi\)}
+
+The procedures for \(A\) and \(\phi\) are identical:
+
+\begin{align*}
+A_\omega &= \int \mathrm{dt} A(x,t)e^{i\omega t}\\
+&= \int \mathrm{dt} \left( \frac{1}{c}\int\mathrm{d}^3y\frac{J(y,t_r)}{|x-y|} \right)e^{i\omega t} \\
+&= \frac{1}{c}\int \mathrm{d^3y} \left( \int \mathrm{dt} \frac{J(y,t_r)}{|x-y|}e^{i\omega t}  \right) \\
+&= \frac{1}{c}\int \mathrm{d^3y} e^{i|x-y|/c}\left( \int \mathrm{dt_r} \frac{J(y,t_r)}{|x-y|}e^{i\omega t_r}  \right)
+\\ &= \frac{1}{c}\int \mathrm{d^3y} \frac{J_\omega (y)}{|x-y|}e^{i\omega |x-y|/c} \\
+\end{align*}
+
+\subsubsection*{Far Field Approximation}
+
+Suppose that \(a\) is the largest value of \(|y|\) for which \(J\) and \(\phi\) are nonzero. Then if \(|x| = r \gg a\) we can make the approximation \(|x-y| = r + \frac{x}{r}\cdot y\), which yields 
+
+\begin{align*}
+A_\omega(x) &= \frac{1}{c}\int \mathrm{d^3y} \frac{J_\omega (y)}{|x-y|}e^{i\omega |x-y|/c} \\
+&\approx \frac{1}{c}\int \mathrm{d^3y} \frac{J_\omega (y)}{r - \frac{x}{r}\cdot y}e^{i\omega (r + \frac{x}{r}\cdot y)/c} \\
+&\approx \frac{e^{i\omega r/c}}{rc}\int \mathrm{d^3y} J_\omega (y)e^{-i\omega \frac{x}{r}\cdot y/c}
+\end{align*}
+
+Likewise for the scalar potential
+
+\[ \phi_\omega \approx \frac{e^{i\omega r/c}}{r}\int \mathrm{d^3y} \rho_\omega (y)e^{-i\omega \frac{x}{r}\cdot y/c}
+\]
+
+We have then for the poynting vector
+
+\begin{align*}
+S &= \frac{c}{4\pi}(E \times B)  = \frac{c}{4\pi} ((\nabla \phi - \dot{A}) \times (\nabla \times A))
+\end{align*}
+
+which isn't particularly less horrifying when expanded out than it would have been without the far field approximation.
+
+\subsection*{2}
+
+The sketch of the derivation is that we can take the solutions for the potentials
+
+\begin{align*}
+\phi(x,t) &= \int\mathrm{d}^3y\frac{\rho(y,t_r)}{|x-y|} \\[6pt]
+A(x,t) &= \frac{1}{c}\int\mathrm{d}^3y\frac{J(y,t_r)}{|x-y|} 
+\end{align*}
+
+and find them explicitly by knowing the form of \(J\) and \(\rho\). For a point charge with position \(z(t)\), these are
+
+\begin{align*}
+\rho(x,t) &= Q\delta^3(z(t)-x) \\
+J(x,t) &= Q\dot{z}(t)\delta^3(z(t)-x)
+\end{align*}
+
+as discussed in the second problem set. Using the identity
+
+\begin{align*}
+\delta(f(y)) &= \sum\frac{\delta(a_i-y)}{\frac{d}{dy}f(a_i)};f(a_i) = 0\\  
+\end{align*}
+
+it becomes straightforward to evaluate \(A\) and \(\phi\), whence the fields are
+
+\begin{align*}
+E(x,t) &= Q\left( \frac{n-\beta}{\gamma^2(1-\beta \cdot n)|x-z(t_r)|^2} \right) +\frac{Q}{c}\left( \frac{n \times( (n-\beta(t_r)) \times \dot{\beta}(t_r))}{(1-\beta(t_r)\cdot b)^3|x-z(t_r)|}\right) \\
+%
+B(x,t) &= n \times E \\
+\end{align*}
+
+where
+\begin{align*}
+n &\equiv \frac{x-z(t_r)}{|z-z(t_r)|}\\
+t_r &\equiv t - |x-z(t)|/c
+\end{align*}
+
+This gives a Poynting vector of
+
+\begin{align*}
+S(x,t) &= \frac{c}{4\pi}E\times B
+\end{align*}
+
+which is dominated in the far field by its radial component
+
+\begin{align*}
+S_{rad}(x,t) &\equiv S(x,t) \cdot n \\
+&= \frac{Q^2}{4\pi c|x-z(t_r)|^2}\left| \frac{n \times ((n \times \beta) \times \dot{\beta)}}{(1-\beta \cdot n)^3} \right|^2
+\end{align*}
+
+Whether the radial component dominates or not, it's the only component that contributes to radiation by definition, since radiated power is the poynting flux integral over a sphere of infinite radius.
+
+For a charge in uniform circular motion, this reduces to
+
+\begin{align*}
+S_{rad}(r\,\theta,\phi &= \frac{Q^2}{r^2 4\pi c^3}\frac{\dot{z}(t_r)^2}{(1-\beta \cos\theta)^3}\left( 1- \frac{\sin^2\theta\cos^2\phi}{\gamma(t_r)^2(1-\beta\cos\theta)^2}\right) \\[6pt]
+&= r^2\frac{dP}{d\Omega}
+\end{align*}
+
+Integrating over the whole sphere finally yields the synchotron radiation formula (or at least a variant of it)
+
+\[ P = \frac{2Q^2\gamma^4\dot{v}^2}{3c^3}
+\]
+
+\subsection*{3}
+
+Notice
+
+\begin{align*}
+\frac{dE}{dt} &= \frac{d}{dt}\gamma m c^2 = \gamma^3mv\dot{v}
+\end{align*}
+
+so that setting \(\frac{dE}{dt} = -P\) yields
+
+\begin{align*}
+\frac{2Q^2}{3c^3}\gamma\dot{v}+ mv = 0
+\end{align*}
+
+This doesn't look straightforward to solve, unless we take \(\gamma = 1\) in the nonrelativistic limit, in which case
+
+\[v = e^{-3c^3mt/2Q^2}
+\]
+
+For the electron mass and charge, this gives a decay constant of only \(7 \times 10^{-34}\) seconds. 
+
+\end{document}

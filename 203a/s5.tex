@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{bbold}
+\usepackage{mathrsfs}
+
+\author{Alex Zahn}
+\title{Phys 203a Problem Set V}
+\date{}
+
+\begin{document}
+\maketitle
+\subsection*{1}
+
+We want to start with the result from the last problem set,
+
+\[ A_\omega(x) = \frac{e^{i\omega r/c}}{rc}\int \mathrm{d^3y} J_\omega (y)e^{-i\omega \frac{x}{r}\cdot y/c}
+\]
+
+Where \(r=|x|\). Defining \(\hat{r} = x/|x|\) and \(k = \omega/c\) this can be rewritten more cleanly as
+
+\[A_\omega(x) = \frac{e^{ik r}}{rc}\int \mathrm{d^3y} J_\omega (y)e^{-ik \hat{r}\cdot y}
+\]
+
+This gives
+\begin{align*}
+B &= \frac{e^{ik r}}{rc} \nabla \times \int \mathrm{d^3y} J_\omega (y)e^{-ik \hat{r}\cdot y} \\
+&= \frac{e^{ik r}}{rc} \nabla \times J_{\omega k}(\hat{r}) \\
+\end{align*}
+
+
+To prove the result we're looking for, we need to factor out an \(x\) from the curl. There's an identity that does exactly that:
+\[ a \times (\nabla \times b) = \nabla(a \cdot b) - b \times(\nabla \times a) - (a\cdot\nabla)b-(b\cdot\nabla)a
+\]
+Specializing to \(a = \hat{r}\)  and \(b=J_{\omega k}(\hat{r})\), the second term vanishes and we have
+\newcommand{\A}{J_{\omega k}(\hat{r})}
+\begin{align*}
+B &\equiv \frac{e^{ik r}}{rc}\hat{r} \times f(\hat{r}) \\
+f(\hat{r}) &= \nabla(\hat{r} \cdot \A) - (\hat{r}\cdot \nabla)\A - (\A\cdot \nabla)\hat{r}
+\end{align*}
+
+This \(f\) is a function of a unit vector and is independent of \(r = |x|\), giving \(f=f(\theta,\phi)\), which is precisely what we were looking for.
+\subsection*{2}
+
+I'll derive here the angular distribution of radiated power for the electric dipole and electric quadrupole approximations, and then just cite the results here in the third and fourth questions.
+
+Inserting the series definition for the exponential in the second equation of the first question, we get an expansion for \(A\) in powers of \(kn\cdot y\). 
+
+\[A_\omega(x) = \frac{e^{ik r}}{rc}\sum_n \frac{(-ik)^n}{n!}\int \mathrm{d^3y} J_\omega (y)(\hat{r} \cdot y)^n
+\]
+In the far field we have \(r \gg 1/k\) and \(k \gg |y|\) for any \(y\) for which \(J(y)\) is nonzero, so that truncating the series is a valid approximation. In particular, for this problem we are interested in going to first order in \(n\) for the electric dipole approximation, and then to second order in \(n\) for the elecric quadrupole approximation.
+
+\subsubsection*{Electric Dipole Approximation}
+
+At first order,
+
+\begin{align*}
+A_\omega(x) = \frac{e^{ik r}}{rc}\int \mathrm{d^3y} J_\omega (y)
+\end{align*}
+
+Integrating by parts,
+\begin{align*}
+A_\omega(x) = \frac{e^{ik r}}{rc}\int \mathrm{d^3y} y \nabla_y \cdot J_\omega (y)
+\end{align*}
+
+Invoking continuity we have \(\nabla_y \cdot J_\omega (y) = -\frac{\partial}{\partial t} \rho_\omega (y) = i\omega \rho_\omega(y) \), where \(\rho_\omega\) is defined analogously to \(A_\omega\) as in the fourth problem set. As a result,
+
+\[A_\omega(x) = \frac{e^{ik r}}{rc}\omega p_\omega
+\]
+
+where \(p_\omega(t)\) is the electric dipole moment \( \int \mathrm{d^3y} \rho_\omega(y)y \) in the mode \(\omega\).
+
+In any homogeneous medium away from sources, we have plane waves with \(|E| = |B| \) and \(E \cdot B = 0\) so that we don't need to do anything with the scalar potential to get \(E\) for our poynting vector calculation.
+
+\begin{align*}
+S &= \frac{c}{4\pi}E \times B = \frac{c}{4\pi}|\nabla \times A|^2 \\
+&= \frac{c^4 k^4}{8}r^2| (\hat{r} \times p_\omega) \times \hat{r}|^2 \\
+&= \frac{c^4 k^4}{8r^2}|p_\omega|^2\sin^3\theta \\
+\frac{dP}{d\Omega} &= \frac{c^4 k^4}{8}|p_\omega|^2\sin^2\theta 
+\end{align*}
+
+Integrating over a sphere of infinite radius, the total power radiated is
+
+\[ P =  \frac{c^4 k^4}{8}\pi^2|p_\omega|^2
+\]
+
+\subsubsection*{Electric Quadrupole Approximation}
+
+The derivation is exactly as above, only applied to the \(n=2\) term. To summarize, we take the second order term in isolation for \(A_\omega\), and then cleverly rewrite it in terms of the quadrupole moment
+
+\[ Q_{ij} = \int \mathrm{d^3y}\rho_\omega(y)(3y_iy_j - \delta_{ij}y^2)
+\]
+Using this form of the vector potential can get \(S\) and then \(\frac{dP}{d\Omega}\) with the same recipe as above. This calculation is slightly messier though, so hopefully no one will be too annoyed if I cite the result from Jackson:
+
+\begin{align*}
+\frac{dP}{d\Omega} &= \frac{c^2Z_0}{1152\pi^2}k^6| (\hat{n} \times Q\hat{n}) \times \hat{n}|^2 \\[6pt]
+P &= \frac{c^2Z_0}{14402\pi}k^6 \sum\limits_{ij}|Q_{ij}|^2
+\end{align*}
+
+
+It's important to note though that these formulae hold only for the fourier components of \(\rho\), \(A\), \(p\), and \(Q_{ij}\) that oscillate at \(\omega\).
+\subsection*{3}
+
+We need to find the electric quadrupole moment as a function of time:
+
+\begin{align*}
+Q_{ij} &= \sum_r q_r(3r_ir_j - \delta_{ij}r^2)
+\end{align*}
+
+where each \(r\) represents the position of a particular charge. Computing this directly, we have
+
+\begin{align*}
+Q &= qa^2\left( \begin{array}{ccc}
+\sin^2\omega_xt+\frac{1}{2}\sin^2\omega_yt & 0 & 0 \\
+0 & -\frac{1}{2}\sin^2\omega_xt-\sin^2\omega_yt & 0\\
+0 &0 & \frac{1}{2}\sin^2\omega_yt - \frac{1}{2}\sin^2\omega_xt
+\end{array}\right) 
+\end{align*}
+
+Notice that this is not a harmonic function of time, so we don't actually have a result for the far field radiation pattern, at least not right away. We can however decompose this easily without resorting to a fourier transform using the \(\sin^2x = \frac{1}{2}(1-\cos2x)\) identity:
+
+\[Q = Q_0 + Q_{2\omega_x} + Q_{2\omega_y}
+\]
+\begin{align*}
+Q_{2\omega_x} &= \frac{qa^2}{2}\left(\begin{array}{ccc}
+-\cos 2\omega_x t & 0 & 0 \\
+0 & \frac{1}{2}\cos 2\omega_x t & 0 \\
+0 & 0 &\frac{1}{2}\cos 2\omega_x t
+\end{array}\right) \\[6pt]
+%
+Q_{2\omega_y} &= \frac{qa^2}{2}\left(\begin{array}{ccc}
+-\frac{1}{2}\cos 2\omega_y t & 0 & 0 \\
+0 & \cos 2\omega_y t& 0 \\
+0 & 0 &-\frac{1}{2}\cos 2\omega_y t
+\end{array}\right) \\[6pt]
+%
+Q_0 &= \frac{qa^2}{2}\left(\begin{array}{ccc}
+\frac{3}{2} & 0 & 0 \\
+0 & -\frac{3}{2}& 0 \\
+0 & 0 &0
+\end{array}\right)
+\end{align*}
+
+Notice that these are all traceless, which is good, because it seems to confirm that I wasn't wrong about being able to decompose a quadrupole like this to get valid independent contributing quadrupole moments.
+
+Lastly, we can note that the \(Q_0\) component is just a static quadrupole moment and doesn't radiate, while the radiation fields from \(Q_{2\omega_x}\) and \(Q_{2\omega_y}\) superpose. 
+
+\subsection*{4}
+
+Symmetry leads us strongly to believe that this system can be approximated as a dipole radiator. First, notice that the charge density on one of the hemispheres will be charge/(surface area) or
+
+\[ \sigma = \frac{q}{2\pi r^2}
+\]
+
+The dipole moment for a hemisphere is then
+
+\begin{align*}
+\int\limits_{0}^{2\pi}\int\limits_{0}^{\frac{\pi}{2}}\mathrm{d\theta d\phi}r^3\sigma \sin\theta
+	\left(\begin{array}{c}
+		\sin\theta\cos\phi \\ \sin\theta\sin\phi \\ \cos\theta
+	\end{array} \right) = \frac{qr}{2}\hat{z}
+\end{align*}
+
+So the total dipole moment of the system is
+
+\begin{align*}
+p &= \frac{1}{2}Q(r_N-r_s)\hat{z} \\[4pt]
+&= \frac{1}{2}Qa\epsilon(\cos\omega_Nt - \cos\omega_St)\hat{z}
+\end{align*}
+
+Fortunately, we don't have to do a fourier transform on \(p\) since it's already decomposed into harmonically oscillating dipole components, which we have already solved the radiation problem for earlier.
+\end{document}

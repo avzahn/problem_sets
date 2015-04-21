@@ -1,0 +1,355 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{bbold}
+\usepackage{mathrsfs}
+
+\author{Alex Zahn}
+\title{Phys 203a Problem Set III}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{1}
+
+\subsubsection*{Commutation Relations and Hermiticity}
+
+These operators are hermitian by inspection. We can check that \([J_i,J_j]=i\epsilon_{ijk} J_k\) by direct computation:
+
+\begin{align*}
+[J_1,J_2] &= \left(
+\begin{array}{cc}
+ \frac{i}{4} & 0 \\
+ 0 & -\frac{i}{4} \\
+\end{array}
+\right) - \left(
+\begin{array}{cc}
+ -\frac{i}{4} & 0 \\
+ 0 & \frac{i}{4} \\
+\end{array}
+\right) = \left(
+\begin{array}{cc}
+ \frac{i}{2} & 0 \\
+ 0 & -\frac{i}{2} \\
+\end{array}
+\right) = iJ_3 \\[6pt]
+[J_1,J_3] &=\left(
+\begin{array}{cc}
+ 0 & -\frac{1}{4} \\
+ \frac{1}{4} & 0 \\
+\end{array}
+\right)-\left(
+\begin{array}{cc}
+ 0 & \frac{1}{4} \\
+ -\frac{1}{4} & 0 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+ 0 & -\frac{1}{2} \\
+ \frac{1}{2} & 0 \\
+\end{array}
+\right) =-iJ_2 \\[6pt]
+[J_2,J_3] &= \left(
+\begin{array}{cc}
+ 0 & \frac{i}{4} \\
+ \frac{i}{4} & 0 \\
+\end{array}
+\right)-\left(
+\begin{array}{cc}
+ 0 & -\frac{i}{4} \\
+ -\frac{i}{4} & 0 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+ 0 & \frac{i}{2} \\
+ \frac{i}{2} & 0 \\
+\end{array}
+\right)=iJ_1
+\end{align*}
+
+
+\subsubsection*{Proving \(\mathscr{D}_{\hat{n}}(\theta) = e^{-i\theta J \cdot \hat{n}}\)}
+
+The idea here is to show that for an arbitrary orthonormal basis \(n_i\) for \(\mathbb{R}^3\) that the corresponding set of \(J \cdot \hat{n}_i \equiv  J_1n_{i_1} + J_2n_{i_2} + J_3n_{i_3}\) satisfy the angular momentum algebra. Consider
+
+\begin{align*}
+[J \cdot \hat{n}_i,J \cdot \hat{n}_j] &= \sum_{l=1}^3[J_l(\hat{n}_i)_l,J \cdot \hat{n}_j] \\
+&= \sum_{l=1}^{3} \sum_{k=1}^3[J_l(\hat{n}_i)_l,J_k(\hat{n}_j)_k] \\
+&=  \sum_{l=1}^{3} \sum_{k=1}^3 (n_i)_l(n_j)_k[J_l,J_k] \\
+&=  \sum_{l=1}^{3} \sum_{k=1}^3 (n_i)_l(n_j)_ki\epsilon_{lkm}J_m \\
+&= i(\hat{n}_i \times \hat{n}_j)\cdot J \\
+&= i\epsilon_{ijk}J \cdot \hat{n}_k
+\end{align*}
+
+
+%The idea here is to show that for an arbitrary orthonormal basis \(n_i\) for \(\mathbb{R}^3\) that the corresponding set of \(J \cdot \hat{n_i} \equiv  J_1n_{i_1} + J_2n_{i_2} + J_3n_{i_3}\) satisfy the angular momentum algebra.
+%
+%We can start with a completely arbitrary unit vector \(n_1\):
+%
+%\begin{align*}
+%n_1 = \left(\begin{array}{c}
+%	\alpha \\ \beta \\ \gamma
+%\end{array}\right)
+%\end{align*}
+%
+%where \(\alpha^2+\beta^2 \leq 1\) and \(\gamma^2 = 1-\alpha^2-\beta^2\). We can construct   another unit vector orthogonal to \(n_1\) by summing over the components of the standard basis that are orthogonal to \(n_1\). Since we are working in \(\mathbb{R}^3\), we get a third mutually orthogonal unit vector for a cross product:
+%
+%\begin{align*}
+%n_1' &=  A\sum_i \hat{e_i} - (\hat{e_i} \cdot n_1)n_1  \\[6pt]
+%n_1''& = n_1 \times n_1'\\[6pt]
+%\end{align*}
+%
+%where \(A\) normalizes \(n_1'\). In general, the basis \((n_1,n_2,n_3)\) will have \(n_2\) and \(n_3\) as mutually orthogonal combinations of \(n_1'\) and \(n_1''\), so that  we must have
+%
+%\begin{align*}
+%n_2 &= n_1'\cos\phi  + n_1''\sin\phi  \\
+%n_3 &= n_1''\cos\phi - n_1'\sin\phi
+%\end{align*}
+%
+%Explicitly,
+%
+%\begin{align*}
+%n_1' &= A\left(
+%\begin{array}{c}
+% -\alpha ^2-\alpha  \beta -\alpha  \gamma +1 \\
+% -\alpha  \beta -\beta ^2-\beta  \gamma +1 \\
+% -\alpha  \gamma -\beta  \gamma -\gamma ^2+1 \\
+%\end{array}
+%\right) \\[6pt]
+%n_1''&=A\left(
+%\begin{array}{c}
+% \gamma -\beta  \\
+% \alpha -\gamma  \\
+% \beta -\alpha  \\
+%\end{array}
+%\right)
+%\end{align*}
+%
+%The resulting transformed generators are 
+%
+%\begin{align*}
+%J_{n_1} &= \frac{A}{2}\left(
+%\begin{array}{cc}
+% \gamma  & \alpha -i \beta  \\
+% \alpha +i \beta  & -\gamma  \\
+%\end{array}
+%\right) \\[6pt]
+%J_{n_2} &= \frac{A}{2}\left(
+%\begin{array}{cc}
+%a_{11} & a_{12} \\
+%a_{21} & a_{22} \end{array}\right) \\[6pt]
+%J_{n_3} &= \frac{A}{2}\left(
+%\begin{array}{cc}
+%b_{11} & b_{12} \\
+%b_{21} & b_{22} \end{array}\right) \\[6pt]
+%\\
+%a_{11} &= (\beta -\alpha ) \sin \phi -\cos \phi  (\gamma  (\alpha +\beta
+%   +\gamma )-1) \\
+%a_{12} &= \sin \phi  (-i \alpha -\beta
+%   +(1+i) \gamma )-\cos \phi 
+%   ((\alpha -i \beta ) (\alpha
+%   +\beta +\gamma )-(1-i)) \\
+%a_{21} &= \sin \phi  (i \alpha -\beta
+%   +(1-i) \gamma )-\cos \phi 
+%   ((\alpha +i \beta ) (\alpha
+%   +\beta +\gamma )-(1+i))   \\
+%a_{22} &= \cos \phi  (\gamma  (\alpha
+%   +\beta +\gamma )-1)+(\alpha
+%   -\beta ) \sin \phi  \\
+%b_{11} &=  \sin \phi  (\gamma  (\alpha
+%   +\beta +\gamma )-1)+(\beta
+%   -\alpha ) \cos \phi  \\
+%b_{12} &=  \sin \phi  ((\alpha -i \beta )
+%   (\alpha +\beta +\gamma
+%   )-(1-i))+\cos \phi  (-i
+%   \alpha -\beta +(1+i) \gamma ) \\
+%b_{21} &= \sin \phi  ((\alpha +i \beta )
+%   (\alpha +\beta +\gamma
+%   )-(1+i))+\cos \phi  (i
+%   \alpha -\beta +(1-i) \gamma )\\
+%b_{22} &=-\gamma  \sin \phi  (\alpha
+%   +\beta +\gamma )+(\alpha
+%   -\beta ) \cos \phi +\sin
+%   \phi 
+%\end{align*}
+%
+%The only problem is that the \(J \cdot n_i\) don't actually conform to the angular momentum algebra, and I'm confused.
+
+\subsubsection*{The \( e^{-i\theta J \cdot \hat{n}} \) Identity}
+
+By direct computation,
+
+\[ (J \cdot \hat{n})^2 = \frac{1}{4}(\hat{n}\cdot\hat{n})I = \frac{1}{4}I
+\]
+
+It follows that
+
+\[ (J \cdot \hat{n})^3 = (J \cdot \hat{n})(J \cdot \hat{n})^2 = \frac{1}{4}J \cdot \hat{n}
+\]
+
+We can see that even powers of \(J\cdot\hat{n}\) are \(I/4\) and that odd powers are \(J\cdot\hat{n}/4\). This actually ruins the identity, since we have the special case \((J\cdot\hat{n})^1=J\cdot\hat{n}\). We can fix this however by dropping the factor of \(1/2\) in the definition of \(J\), which gets rid of the \(1/4\) prefactors above. We can now write
+
+\begin{align*}
+e^{-i\theta J \cdot \hat{n}} &= \sum_\mathbb{Z^+} \frac{(-i\theta)^k (J\cdot\hat{n})^k}{k!} \\
+&= \sum \frac{(-1)^k\theta^{2k}(J\cdot\hat{n})^{2k}}{(2k)!} - i\sum \frac{(-1)^k\theta^{2k+1}( J\cdot\hat{n})^{2k+1}}{(2k+1)!} \\
+&= I\sum \frac{(-1)^k\theta^{2k}}{(2k)!} - i\sum \frac{(-1)^k\theta^{2k+1}}{(2k+1)!} \\
+&= I\cos\theta - I(J\cdot\hat{n})\sin\theta
+\end{align*}
+
+\subsubsection*{\(|J\cdot v|\) and \(J^2\)}
+
+Direct computation gives
+
+\begin{align*}
+|J\cdot v| &= v_3^2 - v_1^2 - v_2^2 \\[6pt]
+J^2 &= \left(
+\begin{array}{cc}
+ \frac{3}{4} & 0 \\
+ 0 & \frac{3}{4} \\
+\end{array}
+\right)
+\end{align*}
+
+\subsubsection*{Rotation by \(2\pi\)}
+
+We first need to compute the form of one of the \( \mathscr{D} \) operators. The simplest one to find is associated with \(J_3\), since \(J_3\) is already diagonal:
+
+\begin{align*}
+e^{2\pi i J_3} &= \left(\begin{array}{cc}
+e^{i\pi} & 0 \\
+0 & e^{-i\pi}
+\end{array}\right) \\[6pt]
+&= \left(\begin{array}{cc}
+-1 & 0 \\
+0 & -1
+\end{array}\right) \\[6pt]
+&= -I
+\end{align*}
+
+So rotation by \(2\pi\) just tacks on a sign.
+
+\[e^{2\pi i J_3}v = -v
+\]
+
+\subsection*{2}
+
+\subsubsection*{Finding \(R_i(\theta)\)}
+
+We seek the three dimensional rotation operators \(R_i(\theta)\) that perform rotations through an angle \(\theta\) about \(\Ket{i}\), where the \(\Ket{i}\) are an orthonormal basis for \(\mathbb{R}^3\). The action of any of these operators in this basis is straightforward trigonometry:
+
+\begin{align*}
+R_3(\theta)\Ket{3} &= \Ket{3} \\
+R_3(\theta)\Ket{2} &= \cos\theta\Ket{2} - \sin\theta\Ket{1} \\
+R_3(\theta)\Ket{1} &= \cos\theta\Ket{1} + \sin\theta\Ket{2} \\
+\end{align*}
+
+Adopting the usual convention
+
+\begin{align*}
+v = a\Ket{1}+b\Ket{2}+c\Ket{3} = \left( \begin{array}{c} a \\ b \\c\end{array}\right)
+\end{align*}
+
+\(R_3\) is written
+
+\begin{align*}
+R_3(\theta)=\left(
+\begin{array}{ccc}
+ \cos \theta  & -\sin \theta  & 0 \\
+ \sin \theta  & \cos \theta  & 0 \\
+ 0 & 0 & 1 \\
+\end{array}
+\right)
+\end{align*}
+
+Either repeating the above or cyclically permuting the basis,
+
+\begin{align*}
+R_1(\theta)&=\left(
+\begin{array}{ccc}
+ \cos \theta & 0 & \sin \theta  \\
+ 0 & 1 & 0 \\
+ -\sin \theta  & 0 & \cos \theta  \\
+\end{array}
+\right)\\[8pt]
+R_2(\theta)&=\left(
+\begin{array}{ccc}
+ 1 & 0 & 0 \\
+ 0 & \cos \theta & -\sin \theta  \\
+ 0 & \sin \theta  & \cos \theta  \\
+\end{array}
+\right)
+\end{align*}
+
+
+\subsubsection*{Finding \(J_i\)}
+
+If \(J_i\) is the generator associated with \(R_i\), we expect by definition that 
+\[R_i(\theta) = e^{-i\theta J_i}
+\]
+
+This is equivalent to postulating that an infinitesimal rotation \(R_i(d\theta)\) is given by \( 1-id\theta J_i\): \(R_i(\theta)\) should be be an infinite composition of \(R_i(d\theta)\) so that \(R_i(\theta) =   \lim_{n\to\infty} \left(R_i(d\theta)\right)^n\). Making the correspondence \(d\theta = \theta/n\) we recover \(R_i(\theta) =  \lim_{n\to\infty} \left( 1 - \frac{i\theta J_i}{n}\right)^n  = e^{-i\theta J_i}\)
+
+So we know that \(R_i(\theta) = 1 - i\theta J_i + O(\theta^2)\) from the definition of matrix exponential. Provided that \(J_i\) is itself not a function of \(\theta\) (which is necessary for \(J_i\) to be a generator in the first place, since the same \(J_i\) must share the same relationship with \(R_i(\theta)\) for every \(\theta\)), we can assert
+
+\[1 - i\theta J_i = 1 + \frac{dR_i}{d\theta}
+\]
+
+which yields
+
+\[ J_i = \frac{i}{\theta}\frac{dR_i}{d\theta}
+\]
+
+\begin{align*}
+J_1 &= \left(
+\begin{array}{ccc}
+ 0 & 0 & 0 \\
+ 0 & 0 & -i \\
+ 0 & i & 0 \\
+\end{array}
+\right)\\[6pt]
+J_2 &=\left(
+\begin{array}{ccc}
+ 0 & 0 & i \\
+ 0 & 0 & 0 \\
+ -i & 0 & 0 \\
+\end{array}
+\right) \\[6pt]
+J_3 &= \left(
+\begin{array}{ccc}
+ 0 & -i & 0 \\
+ i & 0 & 0 \\
+ 0 & 0 & 0 \\
+\end{array}
+\right)
+\end{align*}
+
+It's easy to verify by direct computation that these \(J_i\) satisfy the angular momentum commutation relations.
+
+
+\subsubsection*{\(|J\cdot v|\) and \(J^2\)}
+
+\begin{align*}
+J\cdot v &= \left(
+\begin{array}{ccc}
+ 0 & -v_3 & v_2 \\
+ v_3 & 0 & -v_1 \\
+ -v_2 & v_1 & 0 \\
+\end{array}
+\right)\\[6pt]
+|J \cdot v| &= 0 \\
+J^2 &= \left(
+\begin{array}{ccc}
+ -2 & 0 & 0 \\
+ 0 & -2 & 0 \\
+ 0 & 0 & -2 \\
+\end{array}
+\right)
+\end{align*}
+ 
+\subsubsection*{Rotation by \(2\pi\)}
+
+\(2\pi\) rotations are less interesting this time. The rotation operator is just \(R_{\hat{n}}(2\pi) = I\).
+
+\end{document}
